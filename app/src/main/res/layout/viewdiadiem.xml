@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:src="@drawable/back"
+            android:scaleType="fitCenter"
+            android:id="@+id/ibback"
+             />
+        <ImageButton
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/addfav"
+            android:id="@+id/imageButton3"
+           />
+
+        <TextView
+            android:text="09562"
+            android:layout_width="wrap_content"
+            android:layout_height="50sp"
+            android:id="@+id/ms"
+            android:textSize="36sp"
+            android:textColor="@color/accent_color"
+            android:textStyle="normal|bold"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_marginLeft="100dp"
+            android:textAlignment="center" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="Toi Quen biet Anh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3" />
+    </LinearLayout>
+
+</LinearLayout>
