@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.1"
-        sha1="05c988b9129d559f20e418aaf3d1a58dafb162a1">
+        sha1="1bb816d688f58031b583b5189525112a3d3222c6">
         <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_13e3a902c117d79688993e9eade2e129344e18f7\classes.dex" />
     </item>
     <item
@@ -34,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.1"
-        sha1="d46801f4d8ecfaadf9fee407092502c591b29a1f">
+        sha1="189be9251320fc774452e3814507e7caa8534af0">
         <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_d5d7a46cccf1172fe36171313dd30dfad95896d0\classes.dex" />
     </item>
     <item

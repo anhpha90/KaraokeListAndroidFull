@@ -1,6 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:paddingBottom="15sp"
+        android:paddingTop="10sp">
+
+        <ImageView
+            android:src="@drawable/back"
+            android:id="@+id/bhbtnback"
+
+            android:layout_marginRight="20sp"
+            android:scaleType="fitCenter"
+            android:layout_weight="0.2"
+            android:layout_gravity="center_vertical"
+            android:layout_width="20sp"
+            android:layout_height="20sp" />
+
+        <TextView
+            android:text="09562"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bhms"
+            android:textSize="32sp"
+            android:textColor="@android:color/background_light"
+            android:textStyle="normal|bold"
+            android:layout_weight="1"
+
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:textAlignment="center" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="10sp">
+
+        <TextView
+            android:text="Toi Quen biet Anh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bhten"
+            android:textAlignment="center"
+            android:textSize="27sp"
+            android:textColor="@color/primary_color_dark"
+            android:paddingTop="20dp"
+            android:textStyle="normal|bold" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp">
+
+            <TextView
+                android:text="Ca sĩ"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:textSize="15sp"
+                android:textStyle="normal|bold|italic" />
+
+            <TextView
+                android:text="Ca Si:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bhcasi"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Nhạc sĩ"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView10"
+                android:textSize="15sp"
+                android:textStyle="normal|bold|italic" />
+
+            <TextView
+                android:text="Nhac si"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bhnhacsi"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:textColor="@color/colorPrimaryDark" />
+        </LinearLayout>
+
+        <TextView
+            android:text="Loi Bai Hat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bhloi"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/primary_color_dark" />
+    </LinearLayout>
 
 </LinearLayout>

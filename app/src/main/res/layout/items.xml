@@ -11,13 +11,14 @@
         android:gravity="center_vertical|center_horizontal"
         android:layout_gravity="center">
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="50325"
             android:id="@+id/ms"
-            android:textSize="23dp"
+            android:textSize="22sp"
             android:layout_gravity="center"
             android:textColor="#e710e3"
             android:textStyle="bold" />
@@ -25,8 +26,9 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/baihatview"
         android:orientation="vertical"
-        android:layout_width="250dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content">
 
         <TextView
@@ -35,7 +37,6 @@
             android:text="Anh Không Muốn Bất Công Với Em"
             android:id="@+id/bh"
             android:layout_gravity="left"
-            android:textSize="17dp"
             android:textColor="#525aef"
             android:layout_margin="1dp"
             android:textStyle="bold" />
@@ -45,7 +46,8 @@
             android:layout_height="wrap_content"
             android:text="Cai Sĩ: Ưng Hoàng Phúc"
             android:id="@+id/cs"
-            android:textColor="#050505" />
+            android:textColor="#050505"
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,17 +55,18 @@
             android:text="Lời: Điều em không muốn nay..."
             android:id="@+id/lr"
             android:textStyle="italic"
-            android:textColor="#554f4f" />
+            android:textColor="#554f4f"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="30dp"
         android:layout_height="match_parent"
         android:gravity="center_vertical|center_horizontal">
 
         <ImageButton
-            android:layout_width="match_parent"
+            android:layout_width="30dp"
             android:layout_height="match_parent"
             android:id="@+id/imageButton"
             android:background="@null"

@@ -2,26 +2,18 @@ package vn.com.pqs.adapter;
 
 import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import vn.com.pqs.model.BaiHat;
-import vn.com.pqs.simplekaraokelist.DanhSach;
 import vn.com.pqs.simplekaraokelist.MainActivity;
 import vn.com.pqs.simplekaraokelist.R;
-import vn.com.pqs.simplekaraokelist.YeuThich;
 
 /**
  * Created by long on 03/12/2016.
@@ -75,8 +67,6 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
          baiHat.setThich(false);
          baiHat.setImg(R.drawable.addfav);
           main2.dsYeuthich.remove(baiHat);
-
-
         }else{
             updateThich(mschon,true);
             baiHat.setThich(true);
@@ -84,8 +74,8 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
             main2.dsYeuthich.add(baiHat);
 
         }
-       main2.YtAdapter.notifyDataSetChanged();
-       main2.DsAdapter.notifyDataSetChanged();
+       //main2.YtAdapter.notifyDataSetChanged();
+      // main2.DsAdapter.notifyDataSetChanged();
        if(main2.baiHatAdapter!=null){main2.baiHatAdapter.notifyDataSetChanged();}
           }
     public void updateThich(String ms,boolean thich) {

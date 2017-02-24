@@ -4,8 +4,14 @@
 <item android:id="@+id/action_search"
     android:orderInCategory="100"
     android:icon="@drawable/ic_action_action_search"
-    android:title="Tìm Kiếm Bài Hát"
+    android:title=""
     app:showAsAction="always"
-
     />
-</menu>
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="Setting"
+        app:showAsAction="never" />
+
+
+    </menu>

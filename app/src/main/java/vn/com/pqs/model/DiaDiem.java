@@ -6,100 +6,170 @@ import java.io.Serializable;
  * Created by long on 03/12/2016.
  */
 public class DiaDiem implements Serializable {
-    private String txtms;
-   private String tenBh;
-    private String txtcs;
-   private String txtLr;
-    private String txtLrNA;
-    private String tenBhNA;
-    private String tenviettat;
-   private Boolean thich;
-    private int img;
+    private int id;
+    private String FullName;
+    private String FullNameNA;
+    private String wardId;
+    private String ward;
+    private String wardNA;
+    private String wardType;
+    private String location;
+    private String districtId;
+    private String district;
+    private String districtNA;
+    private String districtType;
+    private String provinceId;
+    private String province;
+    private String provinceNA;
+    private String provinceType;
 
     public DiaDiem() {
     }
 
-    public DiaDiem(String txtms, String tenBh, String txtcs, String txtLr, String txtLrNA, String tenBhNA, String tenviettat, Boolean thich, int img) {
-        this.txtms = txtms;
-        this.tenBh = tenBh;
-        this.txtcs = txtcs;
-        this.txtLr = txtLr;
-        this.txtLrNA = txtLrNA;
-        this.tenBhNA = tenBhNA;
-        this.tenviettat = tenviettat;
-        this.thich = thich;
-        this.img = img;
+    public DiaDiem(int id, String fullName, String fullNameNA, String wardId, String ward, String wardNA, String wardType, String location, String districtId, String district, String districtNA, String districtType, String provinceId, String province, String provinceNA, String provinceType) {
+        this.id = id;
+        FullName = fullName;
+        FullNameNA = fullNameNA;
+        this.wardId = wardId;
+        this.ward = ward;
+        this.wardNA = wardNA;
+        this.wardType = wardType;
+        this.location = location;
+        this.districtId = districtId;
+        this.district = district;
+        this.districtNA = districtNA;
+        this.districtType = districtType;
+        this.provinceId = provinceId;
+        this.province = province;
+        this.provinceNA = provinceNA;
+        this.provinceType = provinceType;
     }
 
-    public String getTxtms() {
-        return txtms;
+    public int getId() {
+        return id;
     }
 
-    public void setTxtms(String txtms) {
-        this.txtms = txtms;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getTenBh() {
-        return tenBh;
+    public String getFullName() {
+        return FullName;
     }
 
-    public void setTenBh(String tenBh) {
-        this.tenBh = tenBh;
+    public void setFullName(String fullName) {
+        FullName = fullName;
     }
 
-    public String getTxtcs() {
-        return txtcs;
+    public String getFullNameNA() {
+        return FullNameNA;
     }
 
-    public void setTxtcs(String txtcs) {
-        this.txtcs = txtcs;
+    public void setFullNameNA(String fullNameNA) {
+        FullNameNA = fullNameNA;
     }
 
-    public String getTxtLr() {
-        return txtLr;
+    public String getWardId() {
+        return wardId;
     }
 
-    public void setTxtLr(String txtLr) {
-        this.txtLr = txtLr;
+    public void setWardId(String wardId) {
+        this.wardId = wardId;
     }
 
-    public String getTxtLrNA() {
-        return txtLrNA;
+    public String getWard() {
+        return ward;
     }
 
-    public void setTxtLrNA(String txtLrNA) {
-        this.txtLrNA = txtLrNA;
+    public void setWard(String ward) {
+        this.ward = ward;
     }
 
-    public String getTenBhNA() {
-        return tenBhNA;
+    public String getWardNA() {
+        return wardNA;
     }
 
-    public void setTenBhNA(String tenBhNA) {
-        this.tenBhNA = tenBhNA;
+    public void setWardNA(String wardNA) {
+        this.wardNA = wardNA;
     }
 
-    public String getTenviettat() {
-        return tenviettat;
+    public String getWardType() {
+        return wardType;
     }
 
-    public void setTenviettat(String tenviettat) {
-        this.tenviettat = tenviettat;
+    public void setWardType(String wardType) {
+        this.wardType = wardType;
     }
 
-    public Boolean getThich() {
-        return thich;
+    public String getLocation() {
+        return location;
     }
 
-    public void setThich(Boolean thich) {
-        this.thich = thich;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public int getImg() {
-        return img;
+    public String getDistrictId() {
+        return districtId;
     }
 
-    public void setImg(int img) {
-        this.img = img;
+    public void setDistrictId(String districtId) {
+        this.districtId = districtId;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getDistrictNA() {
+        return districtNA;
+    }
+
+    public void setDistrictNA(String districtNA) {
+        this.districtNA = districtNA;
+    }
+
+    public String getDistrictType() {
+        return districtType;
+    }
+
+    public void setDistrictType(String districtType) {
+        this.districtType = districtType;
+    }
+
+    public String getProvinceId() {
+        return provinceId;
+    }
+
+    public void setProvinceId(String provinceId) {
+        this.provinceId = provinceId;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getProvinceNA() {
+        return provinceNA;
+    }
+
+    public void setProvinceNA(String provinceNA) {
+        this.provinceNA = provinceNA;
+    }
+
+    public String getProvinceType() {
+        return provinceType;
+    }
+
+    public void setProvinceType(String provinceType) {
+        this.provinceType = provinceType;
     }
 }
