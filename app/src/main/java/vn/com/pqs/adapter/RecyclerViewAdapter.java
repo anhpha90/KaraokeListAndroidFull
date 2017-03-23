@@ -18,7 +18,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import vn.com.pqs.model.BaiHat;
+import vn.com.pqs.model.Song;
 import vn.com.pqs.simplekaraokelist.MainActivity;
 import vn.com.pqs.simplekaraokelist.R;
 import vn.com.pqs.simplekaraokelist.ViewBaiHat;
@@ -29,9 +29,9 @@ import vn.com.pqs.simplekaraokelist.ViewBaiHat;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
     implements RecyclerViewFastScroller.BubbleTextGetter {
 Context context;
-    List<BaiHat> dataset;
+    List<Song> dataset;
     MainActivity main1 ;
-    public RecyclerViewAdapter(List<BaiHat> dataset, MainActivity main1,Context context) {
+    public RecyclerViewAdapter(List<Song> dataset, MainActivity main1,Context context) {
         this.dataset = dataset;
         this.main1 = main1;
         this.context = context;
@@ -53,18 +53,18 @@ Context context;
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        final BaiHat baiHat = this.dataset.get(position);
-        holder.ms.setText(baiHat.getTxtms());
-        holder.bhName.setText(baiHat.getTenBh());
-        holder.lr.setText(baiHat.getTxtLr());
-        holder.cs.setText(baiHat.getTxtcs());
+        final Song song = this.dataset.get(position);
+        holder.ms.setText(song.getId());
+        holder.bhName.setText(song.getMn());
+        holder.lr.setText(song.getSlyric());
+        holder.cs.setText(song.getSinger());
         holder.baihatView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context mcon = v.getContext();
                 Intent intent = new Intent(mcon, ViewBaiHat.class);
                 Bundle mBundle = new Bundle();
-                mBundle.putSerializable("ka",baiHat);
+                mBundle.putSerializable("ka",song);
                 intent.putExtras(mBundle);
                 mcon.startActivity(intent);
 
@@ -76,89 +76,71 @@ Context context;
             @Override
             public void onClick(View v) {
 
-                String mschon = baiHat.getTxtms().toString();
+                String mschon = song.getId().toString();
 
-               if(baiHat.getThich()){
-              baiHat.setThich(false);
-              baiHat.setImg(R.drawable.addfav);
+               if(song.isLike()){
+              song.setLike(false);
+              song.setImg(R.drawable.addfav);
 if(main1.listKa=="A"){
               updateThich(mschon,false);
-              main1.dsYeuthich.remove(baiHat);}
+              main1.dsYeuthich.remove(song);}
                    if(main1.listKa=="C"){updateThichCa(mschon,false);
-                       main1.dsYeuthichCa.remove(baiHat);}
-                   if(main1.listKa=="M"){updateThichMc(mschon,false);
-                       main1.dsYeuthichMc.remove(baiHat);}
+                       main1.dsYeuthichCa.remove(song);}
+
 
           }else{
-              baiHat.setThich(true);
-              baiHat.setImg(R.drawable.added);
+              song.setLike(true);
+              song.setImg(R.drawable.added);
                    if(main1.listKa=="A"){ updateThich(mschon,true);
-                   main1.dsYeuthich.add(baiHat);}
+                   main1.dsYeuthich.add(song);}
                    if(main1.listKa=="C"){ updateThichCa(mschon,true);
-                       main1.dsYeuthichCa.add(baiHat);}
-                   if(main1.listKa=="M"){ updateThichMc(mschon,true);
-                       main1.dsYeuthichMc.add(baiHat);}
-               }
+                       main1.dsYeuthichCa.add(song);}
+                               }
       main1.recyclerViewAdapter.notifyDataSetChanged();
       main1.recyclerViewAdapterCa.notifyDataSetChanged();
-      main1.recyclerViewAdapterMc.notifyDataSetChanged();
+
       main1.ytRecle.notifyDataSetChanged();
       main1.ytRecleCa.notifyDataSetChanged();
-      main1.ytRecleMc.notifyDataSetChanged();
+
      if(main1.rvTimKiem!=null) main1.rvTimKiem.notifyDataSetChanged();
 
       //mainActivity.recyclerViewAdapter.notifyDataSetChanged();
                    }
         });
-        holder.imageButton.setImageResource(baiHat.getImg());
+        holder.imageButton.setImageResource(song.getImg());
     }
 
     public void updateThichCa(String ms,boolean thich) {
         ContentValues values = new ContentValues();
         if(thich==false){
-            values.put("YEUTHICH","0");}
+            values.put("LIKE","0");}
         else{
-            values.put("YEUTHICH","1");
+            values.put("LIKE","1");
         }
-        int ret = main1.database.update("California",values,"MABH='"+ms+"'",null);
+        int ret = main1.database.update("Cali",values,"ID='"+ms+"'",null);
 
     }
     public void updateThich(String ms,boolean thich) {
         ContentValues values = new ContentValues();
         if(thich==false){
-            values.put("YEUTHICH","0");}
+            values.put("LIKE","0");}
         else{
-            values.put("YEUTHICH","1");
+            values.put("LIKE","1");
         }
-        int ret = main1.database.update("ArirangSongList",values,"MABH='"+ms+"'",null);
+        int ret = main1.database.update("Arirang",values,"ID='"+ms+"'",null);
 
     }
 
-    public void updateThichMc(String ms,boolean thich) {
-        ContentValues values = new ContentValues();
-        if(thich==false){
-            values.put("YEUTHICH","0");}
-        else{
-            values.put("YEUTHICH","1");
-        }
-        int ret = main1.database.update("MusicCore",values,"MABH='"+ms+"'",null);
-
-    }
-
-    @Override
+      @Override
     public String getTextToShowInBubble(int pos) {
 
         if (pos < 0 || pos >= dataset.size())
             return null;
 
-        String name = dataset.get(pos).getTenviettat();
+        String name = dataset.get(pos).getSmn();
         String strAlpha = name.substring(0, 1);
         if (name == null || name.length() < 1)
             return null;
-
-        strAlpha.replace("1","#");
-        strAlpha.replace("2","#");
-        strAlpha.replace("9","#");
         return strAlpha;
     }
 

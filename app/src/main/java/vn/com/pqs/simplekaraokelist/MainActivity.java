@@ -10,13 +10,12 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -24,6 +23,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.viethoa.models.AlphabetItem;
 
@@ -36,47 +37,45 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import vn.com.pqs.adapter.BaiHatAdapter;
-import vn.com.pqs.adapter.DiaDiemAdapter;
+import vn.com.pqs.adapter.AddressAdapter;
 import vn.com.pqs.adapter.RecyclerViewAdapter;
-import vn.com.pqs.model.BaiHat;
+import vn.com.pqs.adapter.SongAdapter;
+import vn.com.pqs.model.Address;
+import vn.com.pqs.model.Song;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    public ArrayList<BaiHat> dsBaiHatTimKiem;
-    public ArrayList<BaiHat> dsDiadiemTimkiem;
+    public ArrayList<Song> dsBaiHatTimKiem;
+    public ArrayList<Address> dsDiadiemTimkiem;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     public ViewPager viewPager;
     public MaterialSearchView searchView;
     private Menu menu;
-    public ArrayList<BaiHat> dsBaihat;
-    public ArrayList<BaiHat> dsBaihatCa;
-    public ArrayList<BaiHat> dsBaihatMc;
-    public ArrayList<BaiHat> dsDiadiem;
-    public ArrayList<BaiHat> dsYeuthich;
-    public ArrayList<BaiHat> dsYeuthichCa;
-    public ArrayList<BaiHat> dsYeuthichMc;
-    public BaiHatAdapter baiHatAdapter;
+    public ArrayList<Song> dsBaihat;
+    public ArrayList<Song> dsBaihatCa;
+    public ArrayList<Address> dsDiadiem;
+    public ArrayList<Song> dsYeuthich;
+    public ArrayList<Song> dsYeuthichCa;
+    public SongAdapter baiHatAdapter;
     public RecyclerViewAdapter recyclerViewAdapter;
     public RecyclerViewAdapter recyclerViewAdapterCa;
-    public RecyclerViewAdapter recyclerViewAdapterMc;
     public RecyclerViewAdapter ytRecle;
     public RecyclerViewAdapter ytRecleCa;
-    public RecyclerViewAdapter ytRecleMc;
     public RecyclerViewAdapter rvTimKiem;
-    public DiaDiemAdapter diaDiemAdapter;
-    public RecyclerView rv;
+    public AddressAdapter diaDiemAdapter;
     public String listKa;
-
-      private int[] tabIcons = {R.drawable.ds, R.drawable.yt, R.drawable.location,R.drawable.tt
+    private AdView mAdView;
+public AdRequest adRequest;
+    private int[] tabIcons = {R.drawable.ds, R.drawable.yt, R.drawable.location,R.drawable.tt
     };
-    public static String DATABASE_NAME = "libKara.sqlite";
+    public static String DATABASE_NAME = "FullDb.sqlite";
     String DB_PATH_SUFFIX = "/databases/";
     public static SQLiteDatabase database = null;
     ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
     public List<AlphabetItem> mAlphabetItems;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -84,21 +83,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         dsYeuthich = new ArrayList<>();
         dsYeuthichCa = new ArrayList<>();
-        dsYeuthichMc = new ArrayList<>();
         dsBaihat = new ArrayList<>();
         dsBaihatCa = new ArrayList<>();
-        dsBaihatMc = new ArrayList<>();
         dsDiadiem = new ArrayList<>();
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         listKa = "A";
         addDatabase();
         addDsBaiHat();
+       addDsDiadiem();
         addDsBaiHatCaLi();
-        addDsBaiHatMc();
-        addDsDiadiem();
         initialiseData();
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -110,9 +109,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
+        setupViewPager(viewPager);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -120,10 +120,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onPageSelected(int position) {
+
+                MenuItem item = menu.findItem(R.id.action_search);
+                //viewPager.getAdapter().notifyDataSetChanged();
                 if(position==0){searchView.setVisibility(View.VISIBLE);
-                    MenuItem item2 = menu.findItem(R.id.action_search);
-                    item2.setIcon(R.drawable.ic_action_action_search);
-                    item2.setVisible(true);
+                    item.setIcon(R.drawable.ic_action_action_search);
+                    item.setVisible(true);
                     toolbar.setTitle("Danh Sách Bài Hát");
                 }
 
@@ -131,21 +133,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     searchView.setVisibility(View.INVISIBLE);
                     searchView.clearFocus();
                     searchView.closeSearch();
-                    MenuItem item2 = menu.findItem(R.id.action_search);
-                    item2.setIcon(null);
                     toolbar.setTitle("Bài Hát Yêu Thích");
+
                 }
 
                 if(position==2){//searchView.setVisibility(View.INVISIBLE);
                     searchView.setVisibility(View.VISIBLE);
-                    MenuItem item2 = menu.findItem(R.id.action_search);
-                    item2.setIcon(R.drawable.ic_action_action_search);
-                    item2.setVisible(true);
+
+                    item.setIcon(R.drawable.ic_action_action_search);
+                    item.setVisible(true);
                     toolbar.setTitle("Địa điểm âm nhạc");
                 }
                 if(position==3){searchView.setVisibility(View.INVISIBLE);
-                    MenuItem item2 = menu.findItem(R.id.action_search);
-                    item2.setVisible(false);
+                    item.setIcon(null);
+                    item.setVisible(false);
+                    searchView.clearFocus();
+                    searchView.closeSearch();
+
                     toolbar.setTitle("Hướng dẫn sử dụng");
                 }
 
@@ -159,38 +163,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
         setupTabIcons();
     }
 
-    private void addDsDiadiem() {
+
+
+
+    public void addDsDiadiem() {
         dsDiadiem.clear();
         database = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
-        Cursor cursor = database.query("diadiem", null, null, null, null, null, null);
+        Cursor cursor = database.query("Address", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String namena = cursor.getString(2);
+            String ad = cursor.getString(3);
+            String adna = cursor.getString(4);
+            String price = cursor.getString(5);
+            String phone = cursor.getString(6);
 
-            String kId = cursor.getString(0);
-            String kName = cursor.getString(1);
-            String kFullAd = cursor.getString(2);
-            String kWard = cursor.getString(3);
-            String kDistrict = cursor.getString(4);
-            String kProvince =cursor.getString(5);
-            String kPrice =cursor.getString(6);
-            int kPhone = cursor.getInt(7);
-            boolean blthich = false;
-            BaiHat diaDiem = new BaiHat();
-            diaDiem.setTxtms(kId);
-            diaDiem.setTenBh(kName);
-            diaDiem.setTxtcs(kFullAd);
-            diaDiem.setTxtLr(kWard);
-            diaDiem.setTxtLrNA(kDistrict);
-            diaDiem.setTenBhNA(kProvince);
-            diaDiem.setTenviettat(kPrice);
-            diaDiem.setImg(kPhone);
-            diaDiem.setThich(blthich);
-            dsDiadiem.add(diaDiem);
+            Address address = new Address();
+            address.setId(id);
+            address.setName(name);
+            address.setNamena(namena);
+            address.setAd(ad);
+            address.setAdna(adna);
+            address.setPrice(price);
+            address.setPhone(phone);
+            dsDiadiem.add(address);
 
         }
         cursor.close();
@@ -210,13 +214,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mAlphabetItems = new ArrayList<>();
         List<String> strAlphabets = new ArrayList<>();
         for (int i = 0; i < dsBaihat.size(); i++) {
-            String name = dsBaihat.get(i).getTenviettat().toString();
+            String name = dsBaihat.get(i).getSmn().toString();
             if (name == null || name.trim().isEmpty())
                 continue;
 
             String word = name.substring(0, 1);
 
-                if (!strAlphabets.contains(word)) {
+            if (!strAlphabets.contains(word)) {
                 strAlphabets.add(word);
                 mAlphabetItems.add(new AlphabetItem(i, word, false));
 
@@ -224,131 +228,106 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
     }
-    private void addDsBaiHat() {
+    public void addDsBaiHat() {
         dsBaihat.clear();
         dsYeuthich.clear();
-
         database = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
-        Cursor cursor = database.query("ArirangSongList", null, null, null, null, null, null);
+        Cursor cursor = database.query("Arirang", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
-            String mabh = cursor.getString(0);
-            String tenbh = cursor.getString(1);
-            String casi = cursor.getString(3);
-            String lr = cursor.getString(2);
-            String bhNA = cursor.getString(7);
-            String lrNA =cursor.getString(6);// cursor.getString(7);
-            String tenviettat =cursor.getString(8);// cursor.getString(8);
-            int yeuthich = cursor.getInt(5);
+            String id = cursor.getString(0);
+            String vol = cursor.getString(1);
+            String mn = cursor.getString(2);
+            String mnna = cursor.getString(3);
+            String smn = cursor.getString(4);
+            String singer = cursor.getString(5);
+            String singerna = cursor.getString(6);
+            String slyric = cursor.getString(7);
+            String lyric = cursor.getString(8);
+            String lyricna = cursor.getString(9);
+            String composer = cursor.getString(10);
+            String composerna = cursor.getString(11);
+            int like = cursor.getInt(12);
             boolean blthich;
-            if (yeuthich == 0) {
+            if (like == 0) {
                 blthich = false;
             } else {
                 blthich = true;
             }
-            BaiHat baiHat = new BaiHat();
-            baiHat.setTxtms(mabh);
-            baiHat.setTenBh(tenbh);
-            baiHat.setTxtcs(casi);
-            baiHat.setTxtLr(lr);
-            baiHat.setTenBhNA(bhNA);
-            baiHat.setTxtLrNA(lrNA);
-            baiHat.setTenviettat(tenviettat);
-            baiHat.setThich(blthich);
+            Song song = new Song();
+            song.setId(id);
+            song.setVol(vol);
+            song.setMn(mn);
+            song.setMnna(mnna);
+            song.setSmn(smn);
+            song.setSinger(singer);
+            song.setSingerna(singerna);
+            song.setSlyric(slyric);
+            song.setLyric(lyric);
+            song.setLyricna(lyricna);
+            song.setComposer(composer);
+            song.setComposerna(composerna);
+            song.setLike(blthich);
             if (blthich == true) {
-                baiHat.setImg(R.drawable.added);
-                dsYeuthich.add(baiHat);
+                song.setImg(R.drawable.added);
+                dsYeuthich.add(song);
             }
             if (blthich == false) {
-                baiHat.setImg(R.drawable.addfav);
+                song.setImg(R.drawable.addfav);
             }
-            dsBaihat.add(baiHat);
+            dsBaihat.add(song);
 
         }
 
         cursor.close();
 
     }
-    private void addDsBaiHatCaLi() {
+    public void addDsBaiHatCaLi() {
         dsYeuthichCa.clear();
         dsBaihatCa.clear();
         database = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
-        Cursor cursor = database.query("California", null, null, null, null, null, null);
+        Cursor cursor = database.query("Cali", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
-            String mabh = cursor.getString(0);
-            String tenbh = cursor.getString(1);
-            String casi = cursor.getString(3);
-            String lr = cursor.getString(2);
-            String bhNA = cursor.getString(7);
-            String lrNA =cursor.getString(6);// cursor.getString(7);
-            String tenviettat =cursor.getString(8);// cursor.getString(8);
-            int yeuthich = cursor.getInt(5);
+            String id = cursor.getString(0);
+            String vol = cursor.getString(1);
+            String mn = cursor.getString(2);
+            String mnna = cursor.getString(3);
+            String smn = cursor.getString(4);
+            String singer = cursor.getString(5);
+            String singerna = cursor.getString(6);
+            String slyric = cursor.getString(7);
+            String lyric = cursor.getString(8);
+            String lyricna = cursor.getString(9);
+            String composer = cursor.getString(10);
+            String composerna = cursor.getString(11);
+            int like = cursor.getInt(12);
             boolean blthich;
-            if (yeuthich == 0) {
+            if (like == 0) {
                 blthich = false;
             } else {
                 blthich = true;
             }
-            BaiHat baiHat = new BaiHat();
-            baiHat.setTxtms(mabh);
-            baiHat.setTenBh(tenbh);
-            baiHat.setTxtcs(casi);
-            baiHat.setTxtLr(lr);
-            baiHat.setTenBhNA(bhNA);
-            baiHat.setTxtLrNA(lrNA);
-            baiHat.setTenviettat(tenviettat);
-            baiHat.setThich(blthich);
+            Song song = new Song();
+            song.setId(id);
+            song.setVol(vol);
+            song.setMn(mn);
+            song.setMnna(mnna);
+            song.setSmn(smn);
+            song.setSinger(singer);
+            song.setSingerna(singerna);
+            song.setSlyric(slyric);
+            song.setLyric(lyric);
+            song.setLyricna(lyricna);
+            song.setComposer(composer);
+            song.setComposerna(composerna);
+            song.setLike(blthich);
             if (blthich == true) {
-                baiHat.setImg(R.drawable.added);
-                dsYeuthichCa.add(baiHat);
+                song.setImg(R.drawable.added);
+                dsYeuthichCa.add(song);
             }
             if (blthich == false) {
-                baiHat.setImg(R.drawable.addfav);
+                song.setImg(R.drawable.addfav);
             }
-            dsBaihatCa.add(baiHat);
-
-        }
-
-        cursor.close();
-
-    }
-    private void addDsBaiHatMc() {
-        dsBaihatMc.clear();
-        dsYeuthichMc.clear();
-
-        database = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
-        Cursor cursor = database.query("MusicCore", null, null, null, null, null, null);
-        while (cursor.moveToNext()) {
-            String mabh = cursor.getString(0);
-            String tenbh = cursor.getString(1);
-            String casi = cursor.getString(3);
-            String lr = cursor.getString(2);
-            String bhNA = cursor.getString(7);
-            String lrNA =cursor.getString(6);// cursor.getString(7);
-            String tenviettat =cursor.getString(8);// cursor.getString(8);
-            int yeuthich = cursor.getInt(5);
-            boolean blthich;
-            if (yeuthich == 0) {
-                blthich = false;
-            } else {
-                blthich = true;
-            }
-            BaiHat baiHat = new BaiHat();
-            baiHat.setTxtms(mabh);
-            baiHat.setTenBh(tenbh);
-            baiHat.setTxtcs(casi);
-            baiHat.setTxtLr(lr);
-            baiHat.setTenBhNA(bhNA);
-            baiHat.setTxtLrNA(lrNA);
-            baiHat.setTenviettat(tenviettat);
-            baiHat.setThich(blthich);
-            if (blthich == true) {
-                baiHat.setImg(R.drawable.added);
-                dsYeuthichMc.add(baiHat);
-            }
-            if (blthich == false) {
-                baiHat.setImg(R.drawable.addfav);
-            }
-            dsBaihatMc.add(baiHat);
+            dsBaihatCa.add(song);
 
         }
 
@@ -398,7 +377,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.menu_item, menu);
         this.menu = menu;
         MenuItem item = menu.findItem(R.id.action_search);
+
         searchView.setMenuItem(item);
+
         return true;
     }
 
@@ -416,7 +397,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addFrag(new YeuThich(), "  YÊUTHÍCH");
         adapter.addFrag(new Diadiem(), "  DiaDiem");
         adapter.addFrag(new LienHe(), "  LIÊNHỆ");
-
         viewPager.setAdapter(adapter);
     }
     @Override
@@ -428,7 +408,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    class ViewPagerAdapter extends FragmentStatePagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
@@ -438,13 +418,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         @Override
         public int getItemPosition(Object object) {
-            notifyDataSetChanged();
+            //return super.getItemPosition(object);
             return POSITION_NONE;
+
         }
 
         @Override
         public Fragment getItem(int position) {
-    return mFragmentList.get(position);
+            return mFragmentList.get(position);
         }
 
         @Override
@@ -464,29 +445,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
     }
-      public static String unAccent(String s) {
-            String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
-            Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-          return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replaceAll("đ", "d");
-        }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public static String unAccent(String s) {
+        String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replaceAll("đ", "d");
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-        public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -501,23 +469,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_cali) {
             listKa = "C";
+
             adapter.addFrag(new DanhSach(), "ZANHSÁCH");
             adapter.addFrag(new YeuThich(), "  YÊUTHÍCH");
             viewPager.setAdapter(adapter);
             viewPager.setCurrentItem(0);
 
 
-        } else if (id == R.id.nav_mc) {
-            listKa = "M";
-            adapter.addFrag(new DanhSach(), "ZANHSÁCH");
-            adapter.addFrag(new YeuThich(), "  YÊUTHÍCH");
-            viewPager.setAdapter(adapter);
-            viewPager.setCurrentItem(0);
         }
         else if (id == R.id.nav_share) {
+            final String appPackageName = getPackageName();
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT,"this app");
+            sendIntent.putExtra(Intent.EXTRA_TEXT,"Ứng Dụng Tìm Bài Hát, Địa Điểm Karaoke hay nhất ");
+            sendIntent.putExtra(Intent.EXTRA_TEXT,"https://play.google.com/store/apps/details?id="+ appPackageName);
             sendIntent.setType("text/plain");
             Intent.createChooser(sendIntent,"Share via");
             startActivity(sendIntent);
@@ -525,9 +490,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_send) {
             final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
             try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://developer?id=P%26Q+Solutions")));
             } catch (android.content.ActivityNotFoundException anfe) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=P%26Q+Solutions")));
             }
         }
 
@@ -535,4 +500,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-   }
+}

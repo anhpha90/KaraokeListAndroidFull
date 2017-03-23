@@ -2,103 +2,139 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.0.0\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="1bb816d688f58031b583b5189525112a3d3222c6">
-        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_13e3a902c117d79688993e9eade2e129344e18f7\classes.dex" />
+        sha1="6f65c144283b31b4b9a70e6e7aa4c4a1c897d4b8">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-9.0.0_acff4f2facc9265af7188f613c5659d6eff51b55.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\long\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\7.0.1\d5d13ea991eab0252e3710e5df3d6a9d4b21d461\butterknife-7.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
-        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\butterknife-7.0.1_988ffde3e16e08975de7ee85fd9f70ed6961e9d6\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
-        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.2.0_48ae247d51e790719abfcb24bcf8b3978af7a008\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="189be9251320fc774452e3814507e7caa8534af0">
-        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_d5d7a46cccf1172fe36171313dd30dfad95896d0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.1.1_e662fe39520e4398e7984db11fa94e2917f6333b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.github.viethoa\fastscroller\1.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="24a29875bd9594b77cfd1e4d4389df7b91c0c163">
-        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.github.viethoa-fastscroller-1.2.0_239b89b818c0771f8b47e2fc1e52ecc31647135d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="d4c936aa8c7d2522c82e3f1829c791d9e367f009">
-        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.2.0_6c4a694f116a99e3c36f016495055b789b9883d3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
-        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.1.1_216c8d5f59e5ca6e5d14312466832635ed7d1ccb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\libs\internal_impl-23.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="6e239441500605809818997dd63b62a947195f8c">
-        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.2.0_7c3e2216d039c2dd409344b447e95868946b72cd\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.miguelcatalan\materialsearchview\1.4.0\jars\classes.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="918e3e9514d90e54421b674cf0c95044f4e155ad">
-        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.miguelcatalan-materialsearchview-1.4.0_fbb4c90bc6a713c9182726d1ae46aff2882be183\classes.dex" />
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\com.miguelcatalan-materialsearchview-1.4.0_fbb4c90bc6a713c9182726d1ae46aff2882be183.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
+        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\9.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="2cb29455028e92e024bbad0d41c6ec772f2433d1">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-9.0.0_e5f8962d094e14e57ef228354bb0aaf23cf80228.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads-lite\9.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="79e4b41db41d4dbbf364c7bd6aaeee5b876c9d8b">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-lite-9.0.0_f754b718d3dbae16317ca5c8eeee965a21bfb2fe.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d4c936aa8c7d2522c82e3f1829c791d9e367f009">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.2.0_6c4a694f116a99e3c36f016495055b789b9883d3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="cc178928721f3222b3b06bdfbd9497378ccb9792">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-9.0.0_1eb902baf170e79634ff5ee58ecf7fd8f69b82be.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.github.viethoa\fastscroller\1.2.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="24a29875bd9594b77cfd1e4d4389df7b91c0c163">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\com.github.viethoa-fastscroller-1.2.0_239b89b818c0771f8b47e2fc1e52ecc31647135d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.1.1_e662fe39520e4398e7984db11fa94e2917f6333b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.2.0_48ae247d51e790719abfcb24bcf8b3978af7a008.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.1.1_216c8d5f59e5ca6e5d14312466832635ed7d1ccb.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\long\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.0\support-annotations-23.2.0.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="c5bf571bb10462bd90e5419ade67793f71acbc87">
-        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.2.0_8edcaf1ed19d3bf5825eddf9ed4af26637af20ba\classes.dex" />
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\support-annotations-23.2.0_8edcaf1ed19d3bf5825eddf9ed4af26637af20ba.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\long\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\7.0.1\d5d13ea991eab0252e3710e5df3d6a9d4b21d461\butterknife-7.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\butterknife-7.0.1_988ffde3e16e08975de7ee85fd9f70ed6961e9d6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="42df48c7305b08b14fa0e84561091b0c24d70d26">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-common-9.0.0_f3ae649b262818f6a729d4ee27707006c2331a01.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="1941832901fc4e7a93300b53762e9f65d7650b99">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-9.0.0_ab4fb02f5877311ef6526586db49bb7f7ad2d096.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\libs\internal_impl-23.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6e239441500605809818997dd63b62a947195f8c">
+        <dex dex="C:\Users\long\Downloads\KaraokeList-master\app\build\intermediates\pre-dexed\debug\internal_impl-23.2.0_7c3e2216d039c2dd409344b447e95868946b72cd.jar" />
     </item>
 
 </items>

@@ -2,14 +2,12 @@ package vn.com.pqs.simplekaraokelist;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import vn.com.pqs.model.BaiHat;
+import vn.com.pqs.model.Song;
 
 public class ViewBaiHat extends Activity {
-ImageView back;
+//ImageView back;
     TextView bhms,bhcasi,bhtacgia,bhlyric,bhten;
 
     @Override
@@ -18,27 +16,27 @@ ImageView back;
 
         setContentView(R.layout.viewbaihat);
         Bundle b = getIntent().getExtras();
-        final BaiHat baiHat = (BaiHat) getIntent().getSerializableExtra("ka");
+        final Song song = (Song) getIntent().getSerializableExtra("ka");
         initilizevar();
-        bhms.setText(baiHat.getTxtms());
-        bhcasi.setText(baiHat.getTxtcs());
-        bhtacgia.setText(baiHat.getTxtcs());
-        bhlyric.setText(baiHat.getTxtLr());
-        bhten.setText(baiHat.getTenBh());
+        bhms.setText(song.getId());
+        bhcasi.setText(song.getSinger());
+        bhtacgia.setText(song.getComposer());
+        bhlyric.setText(song.getLyric());
+        bhten.setText(song.getMn());
 
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                             finish();
-
-            }
-        });
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                             finish();
+//
+//            }
+//        });
       }
 
 
     private void initilizevar() {
-        back = (ImageView) findViewById(R.id.bhbtnback);
+//        back = (ImageView) findViewById(R.id.bhbtnback);
         bhms = (TextView) findViewById(R.id.bhms);
         bhcasi = (TextView) findViewById(R.id.bhcasi);
         bhtacgia = (TextView) findViewById(R.id.bhnhacsi);

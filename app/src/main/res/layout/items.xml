@@ -32,22 +32,28 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Anh Không Muốn Bất Công Với Em"
             android:id="@+id/bh"
             android:layout_gravity="left"
             android:textColor="#525aef"
             android:layout_margin="1dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cai Sĩ: Ưng Hoàng Phúc"
-            android:id="@+id/cs"
-            android:textColor="#050505"
-            android:textSize="12sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ưng Hoàng Phúc"
+                android:id="@+id/cs"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                />
+
+
 
         <TextView
             android:layout_width="wrap_content"

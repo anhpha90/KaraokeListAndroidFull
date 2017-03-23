@@ -10,12 +10,7 @@
             android:id="@+id/nav_cali"
             android:icon="@drawable/c"
             android:title="California" />
-        <item
-            android:id="@+id/nav_mc"
-            android:icon="@drawable/m"
-            android:title="Music Core" />
-
-    </group>
+     </group>
 
     <item android:title="Cộng đồng">
         <menu>

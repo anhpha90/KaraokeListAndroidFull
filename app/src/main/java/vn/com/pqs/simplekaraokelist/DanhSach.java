@@ -5,9 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,11 +14,10 @@ import com.viethoa.RecyclerViewFastScroller;
 import java.util.ArrayList;
 
 import vn.com.pqs.adapter.RecyclerViewAdapter;
-import vn.com.pqs.model.BaiHat;
+import vn.com.pqs.model.Song;
 
 public class DanhSach extends Fragment{
 
-    MaterialSearchView searchViewds;
         public DanhSach() {
         // Required empty public constructor
     }
@@ -29,30 +25,18 @@ public class DanhSach extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-           }
+                  }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_item, menu);
-        MenuItem item = menu.findItem(R.id.action_search);
-        searchViewds.setMenuItem(item);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-         final View view =  inflater.inflate(R.layout.danhsach, container, false);
-        searchViewds = (MaterialSearchView) getActivity().findViewById(R.id.search_view);
-
-
-        //ListView lvdanhsach = (ListView) view.findViewById(R.id.lvdanhsach);
         final MainActivity main1 = (MainActivity) getActivity();
+        View view =  inflater.inflate(R.layout.danhsach, container, false);
+        setHasOptionsMenu(true);
         main1.recyclerViewAdapter = new RecyclerViewAdapter(main1.dsBaihat, (MainActivity) getActivity(),getContext());
         main1.recyclerViewAdapterCa = new RecyclerViewAdapter(main1.dsBaihatCa, (MainActivity) getActivity(),getContext());
-        main1.recyclerViewAdapterMc = new RecyclerViewAdapter(main1.dsBaihatMc, (MainActivity) getActivity(),getContext());
         main1.rvTimKiem = new RecyclerViewAdapter(main1.dsBaiHatTimKiem, (MainActivity) getActivity(),getContext());
         final RecyclerView rv = (RecyclerView) view.findViewById(R.id.my_recycler_viewds);
         final RecyclerViewFastScroller fastScroller = (RecyclerViewFastScroller) view.findViewById(R.id.fast_scroller);
@@ -63,21 +47,19 @@ public class DanhSach extends Fragment{
         //lvdanhsach.setAdapter(main1.DsAdapter);
         main1.recyclerViewAdapter.notifyDataSetChanged();
         main1.recyclerViewAdapterCa.notifyDataSetChanged();
-        main1.recyclerViewAdapterMc.notifyDataSetChanged();
+
         if(main1.listKa=="A"){
         rv.setAdapter(main1.recyclerViewAdapter);}
         if(main1.listKa=="C"){
             rv.setAdapter(main1.recyclerViewAdapterCa);
         }
-        if(main1.listKa=="M"){
-            rv.setAdapter(main1.recyclerViewAdapterMc);
-        }
+
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(llm);
 
 
 
-        searchViewds.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+        main1.searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
 
@@ -99,18 +81,13 @@ public class DanhSach extends Fragment{
                     main1.recyclerViewAdapterCa.notifyDataSetChanged();
                     rv.setAdapter(main1.recyclerViewAdapterCa);
                 }
-                if(main1.listKa=="M"){
-                    main1.recyclerViewAdapterMc.notifyDataSetChanged();
-                    rv.setAdapter(main1.recyclerViewAdapterMc);
-                }
-
 
                 LinearLayoutManager llm = new LinearLayoutManager(getActivity());
                 rv.setLayoutManager(llm);
 
             }
         });
-        searchViewds.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+        main1.searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -123,38 +100,37 @@ public class DanhSach extends Fragment{
                     newText = newText.toLowerCase();
                     newText = main1.unAccent(newText);
                     if(main1.listKa=="A"){
-                    for (BaiHat objects : main1.dsBaihat) {
-                        if(objects.getTenviettat().toLowerCase().contains(newText)){
+                    for (Song objects : main1.dsBaihat) {
+                        if(objects.getSmn().contains(newText)){
                             main1.dsBaiHatTimKiem.add(0,objects);
                         }
-                        if (objects.getTenBhNA().toLowerCase().contains(newText)) {
+                        if (objects.getMnna().contains(newText)) {
                             main1.dsBaiHatTimKiem.add(0,objects);
                         }
-                        if(objects.getTxtLrNA().toLowerCase().contains(newText)){
-                            main1.dsBaiHatTimKiem.add(objects);
+                        if (objects.getSingerna().contains(newText)) {
+                            main1.dsBaiHatTimKiem.add(0,objects);
                         }
+                        if (objects.getComposerna().contains(newText)) {
+                            main1.dsBaiHatTimKiem.add(0,objects);
+                        }
+                     if(newText.length()>10){
+                         if (objects.getLyricna().contains(newText)) {
+                             main1.dsBaiHatTimKiem.add(0,objects);
+                         }
+                     }
+//                        if(objects.getLyricna().toLowerCase().contains(newText)){
+//                            main1.dsBaiHatTimKiem.add(objects);
+//                        }
                     }}
                     if(main1.listKa=="C"){
-                        for (BaiHat objects : main1.dsBaihatCa) {
-                            if(objects.getTenviettat().toLowerCase().contains(newText)){
+                        for (Song objects : main1.dsBaihatCa) {
+                            if(objects.getSmn().toLowerCase().contains(newText)){
                                 main1.dsBaiHatTimKiem.add(0,objects);
                             }
-                            if (objects.getTenBhNA().toLowerCase().contains(newText)) {
+                            if (objects.getMnna().toLowerCase().contains(newText)) {
                                 main1.dsBaiHatTimKiem.add(0,objects);
                             }
-                            if(objects.getTxtLrNA().toLowerCase().contains(newText)){
-                                main1.dsBaiHatTimKiem.add(objects);
-                            }
-                        }}
-                    if(main1.listKa=="M"){
-                        for (BaiHat objects : main1.dsBaihatMc) {
-                            if(objects.getTenviettat().toLowerCase().contains(newText)){
-                                main1.dsBaiHatTimKiem.add(0,objects);
-                            }
-                            if (objects.getTenBhNA().toLowerCase().contains(newText)) {
-                                main1.dsBaiHatTimKiem.add(0,objects);
-                            }
-                            if(objects.getTxtLrNA().toLowerCase().contains(newText)){
+                            if(objects.getLyricna().toLowerCase().contains(newText)){
                                 main1.dsBaiHatTimKiem.add(objects);
                             }
                         }}
@@ -176,10 +152,7 @@ public class DanhSach extends Fragment{
                         main1.recyclerViewAdapterCa.notifyDataSetChanged();
                         rv.setAdapter(main1.recyclerViewAdapterCa);
                     }
-                    if(main1.listKa=="M"){
-                        main1.recyclerViewAdapterMc.notifyDataSetChanged();
-                        rv.setAdapter(main1.recyclerViewAdapterMc);
-                    }
+
                     LinearLayoutManager llm = new LinearLayoutManager(getActivity());
                     rv.setLayoutManager(llm);
                 }
@@ -187,9 +160,7 @@ public class DanhSach extends Fragment{
                 return true;
             }
         });
-
-
-        return view;
+              return view;
     }
 
 }

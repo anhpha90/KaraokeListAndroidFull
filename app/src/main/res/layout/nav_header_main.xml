@@ -13,12 +13,14 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Karaoke List"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-
+        android:src="@drawable/headerlogo"
+        android:id="@+id/imageView"
+        android:layout_gravity="left"
+        android:layout_marginLeft="5dp"
+        android:paddingLeft="1dp"
+        android:foregroundGravity="left"
+        android:scaleType="fitStart" />
 </LinearLayout>
